@@ -3,7 +3,7 @@ project(Red_Black_Tree)
 
 set(CMAKE_CXX_STANDARD 14)
 
-include_directories(include)
+include_directories(include BinarySearchTree/include)
 add_executable(Red_Black_Tree
         src/main.cpp
         src/RBTree.cpp)
