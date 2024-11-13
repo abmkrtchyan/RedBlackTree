@@ -1,14 +1,14 @@
 #include "RBTree.h"
 
-int main() {
+int main()
+{
     RBTree tree;
-    tree.insert(50);
-    tree.insert(30);
-    tree.insert(20);
-    tree.insert(40);
-//    tree.insert(45);
-//    tree.insert(80);
-    tree.insert(60);
-    tree.printTree();
+    for (int i = 1; i < 16; i++)
+    {
+        std::cout << "Inserting: " << i << std::endl;
+        tree.insert(i);
+        tree.printTree();
+        std::cout << "____________________________________________" << std::endl;
+    }
     return 0;
 }

@@ -2,36 +2,40 @@
 #define RED_BLACK_TREE_RB_NODE_H
 
 #include <iostream>
+#include <Node.h>
 
-enum Color {
-    RED = true, BLACK = false
+enum Color
+{
+    RED = true,
+    BLACK = false
 };
 
-class RBNode {
+template <class T>
+class RBNode : public Node<T>
+{
 public:
-    RBNode *left;
-    RBNode *right;
-    RBNode *parent;
-    int data;
+    RBNode* parent;
+    RBNode* left;
+    RBNode* right;
     Color color;
 
-    RBNode(int data,
-           Color color = RED,
-           RBNode *left = nullptr,
-           RBNode *right = nullptr,
-           RBNode *parent = nullptr)
-            : data(data),
-              left(left),
-              right(right),
-              parent(parent),
-              color(color) {};
 
-    void print() const {
+    explicit RBNode(
+        const T& data,
+        RBNode* parent = nullptr,
+        RBNode* left = nullptr,
+        RBNode* right = nullptr,
+        const Color& color = RED
+    ) : Node<T>(data), parent(parent), left(left), right(right), color(color)
+    {
+    }
+
+    void print() const
+    {
         std::cout << this->data;
         this->color == RED ? std::cout << "(RED)" : std::cout << "(BLACK)";
         std::cout << "\n";
     }
 };
-
 
 #endif //RED_BLACK_TREE_RB_NODE_H
