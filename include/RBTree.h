@@ -30,6 +30,7 @@ public:
 
     ~RBTree() override
     {
+        delete nil;
         delete head;
     }
 
@@ -71,7 +72,8 @@ void RBTree<T>::remove(const T& elem)
 template <class T>
 void RBTree<T>::insert(const T& elem)
 {
-    rbInsert(new RBNode<T>(elem));
+    auto new_node = new RBNode<T>(elem);
+    rbInsert(new_node);
 }
 
 template <class T>

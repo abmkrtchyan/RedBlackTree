@@ -36,6 +36,8 @@ public:
         this->color == RED ? std::cout << "(RED)" : std::cout << "(BLACK)";
         std::cout << "\n";
     }
+
+    ~RBNode() = default;
 };
 
 #endif //RED_BLACK_TREE_RB_NODE_H
