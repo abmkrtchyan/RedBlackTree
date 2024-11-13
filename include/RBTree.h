@@ -30,12 +30,36 @@ public:
 
     ~RBTree() override
     {
-        delete nil;
-        delete head;
+        if (this->head == this->nil)
+        {
+            return;
+        }
+
+        std::stack<RBNode<T>*> stack;
+        stack.push(this->head);
+
+        while (!stack.empty())
+        {
+            RBNode<T>* node = stack.top();
+            stack.pop();
+
+            if (node->left != this->nil)
+            {
+                stack.push(node->left);
+            }
+
+            if (node->right != this->nil)
+            {
+                stack.push(node->right);
+            }
+
+            delete node;
+        }
+        delete this->nil;
     }
 
 private:
-    RBNode<T>* const nil;
+    RBNode<T>* const nil = new RBNode<T>(T(), nullptr, nullptr, nullptr, BLACK);
 
     RBNode<T>* head;
 };
@@ -44,9 +68,10 @@ private:
 #endif //RED_BLACK_TREE_RB_TREE_H
 
 template <class T>
-RBTree<T>::RBTree() : nil(new RBNode<T>(T(), nullptr, nullptr, nullptr, BLACK))
+RBTree<T>::RBTree()
+    : nil(new RBNode<T>(T(), nullptr, nullptr, nullptr, BLACK)),
+      head(this->nil)
 {
-    this->head = this->nil;
 }
 
 template <class T>
