@@ -7,6 +7,11 @@
 template <class T = int>
 class RBTree : public AbstractBinaryTree<T>
 {
+private:
+    RBNode<T>* const nil = new RBNode<T>(T(), nullptr, nullptr, nullptr, BLACK);
+
+    RBNode<T>* head;
+
 public:
     RBTree();
 
@@ -16,17 +21,7 @@ public:
 
     void remove(const T& elem) override;
 
-    void rbInsert(RBNode<T>* newNode);
-
-    void insertFixup(RBNode<T>*);
-
-    void leftRotate(RBNode<T>*);
-
-    void rightRotate(RBNode<T>*);
-
     void printTree();
-
-    void printTree(RBNode<T>* root, int space);
 
     ~RBTree() override
     {
@@ -59,9 +54,15 @@ public:
     }
 
 private:
-    RBNode<T>* const nil = new RBNode<T>(T(), nullptr, nullptr, nullptr, BLACK);
+    void rbInsert(RBNode<T>* newNode);
 
-    RBNode<T>* head;
+    void insertFixup(RBNode<T>*);
+
+    void leftRotate(RBNode<T>*);
+
+    void rightRotate(RBNode<T>*);
+
+    void printTree(RBNode<T>* root, int space);
 };
 
 
